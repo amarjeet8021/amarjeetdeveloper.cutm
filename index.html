@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amarjeet Kumar Tiwari | Full Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        :root {
+            --primary-glow: 0 0 20px rgba(88, 101, 242, 0.5);
+            --secondary-glow: 0 0 20px rgba(162, 89, 255, 0.5);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        body.light-mode {
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .typing-container::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .gradient-bg {
+            background: linear-gradient(45deg, #1e293b, #0f172a);
+            background-size: 200% 200%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .chat-bubble {
+            position: relative;
+            border-radius: 1.5rem;
+            padding: 1rem 1.5rem;
+            max-width: 80%;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .chat-bubble.sent {
+            background-color: #3b82f6;
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 0;
+        }
+
+        .chat-bubble.received {
+            background-color: #1e293b;
+            color: white;
+            margin-right: auto;
+            border-bottom-left-radius: 0;
+        }
+
+        .chat-bubble.sent::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: -0.5rem;
+            width: 0.5rem;
+            height: 1rem;
+            background-color: #3b82f6;
+            clip-path: polygon(0 0, 0% 100%, 100% 100%);
+        }
+
+        .chat-bubble.received::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -0.5rem;
+            width: 0.5rem;
+            height: 1rem;
+            background-color: #1e293b;
+            clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glow-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .glow-button::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            z-index: -1;
+            background: linear-gradient(45deg, #5865F2, #A259FF, #5865F2);
+            background-size: 400% 400%;
+            animation: glowAnimation 3s ease infinite;
+            border-radius: 10px;
+        }
+
+        @keyframes glowAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .tech-icon {
+            transition: all 0.3s ease;
+        }
+
+        .tech-icon:hover {
+            transform: translateY(-5px);
+            filter: drop-shadow(0 0 8px currentColor);
+        }
+
+        .project-card {
+            transition: all 0.3s ease;
+            transform-origin: center;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(88, 101, 242, 0.3);
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            background-color: #a0aec0;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+            animation: typing 1.5s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+            }
+
+            30% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .input-field {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            border-color: #5865F2;
+            box-shadow: 0 0 0 3px rgba(88, 101, 242, 0.2);
+        }
+
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+            filter: drop-shadow(0 0 5px currentColor);
+        }
+
+        .theme-toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            border-radius: 15px;
+            background-color: #1e293b;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #5865F2;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle.light::after {
+            transform: translateX(30px);
+            background-color: #A259FF;
+        }
+
+        .theme-toggle.light {
+            background-color: #e2e8f0;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #5865F2, #A259FF);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            text-shadow: 0 0 8px rgba(88, 101, 242, 0.7);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #5865F2;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+    <script>tailwind.config = { theme: { extend: { colors: { primary: '#5865F2', secondary: '#A259FF' }, borderRadius: { 'none': '0px', 'sm': '4px', DEFAULT: '8px', 'md': '12px', 'lg': '16px', 'xl': '20px', '2xl': '24px', '3xl': '32px', 'full': '9999px', 'button': '8px' } } } }</script>
+</head>
+
+<body class="gradient-bg min-h-screen">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-opacity-90 backdrop-blur-md bg-[#0f172a] shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-['Pacifico'] text-white">amarjeetdeveloper</a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="nav-link text-gray-300 hover:text-white font-medium">About</a>
+                    <a href="#skills" class="nav-link text-gray-300 hover:text-white font-medium">Skills</a>
+                    <a href="#projects" class="nav-link text-gray-300 hover:text-white font-medium">Projects</a>
+                    <a href="#testimonials" class="nav-link text-gray-300 hover:text-white font-medium">Testimonials</a>
+                    <a href="#contact" class="nav-link text-gray-300 hover:text-white font-medium">Contact</a>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <div class="theme-toggle" id="themeToggle"></div>
+                    <button class="md:hidden w-10 h-10 flex items-center justify-center text-white"
+                        id="mobileMenuButton">
+                        <i class="ri-menu-line ri-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="md:hidden mt-4 pb-2 hidden" id="mobileMenu">
+                <div class="flex flex-col space-y-4">
+                    <a href="#about" class="nav-link text-gray-300 hover:text-white font-medium">About</a>
+                    <a href="#skills" class="nav-link text-gray-300 hover:text-white font-medium">Skills</a>
+                    <a href="#projects" class="nav-link text-gray-300 hover:text-white font-medium">Projects</a>
+                    <a href="#testimonials" class="nav-link text-gray-300 hover:text-white font-medium">Testimonials</a>
+                    <a href="#contact" class="nav-link text-gray-300 hover:text-white font-medium">Contact</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center px-6 py-20">
+            <div class="container mx-auto">
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-32 h-32 rounded-full bg-gradient-to-r from-primary to-secondary p-1 mb-8">
+                        <div
+                            class="w-full h-full rounded-full overflow-hidden bg-[#1e293b] flex items-center justify-center">
+                            <span class="text-4xl"><img src="D:\payment\Amarjeet kumar tiwari\D:\payment\Amarjeet kumar tiwari\websitedeveloper.png" alt=""></span>
+                        </div>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                        <span id="typingText" class="typing-container"></span>
+                    </h1>
+                    <p class="text-xl text-gray-300 max-w-2xl mb-12 leading-relaxed">
+                        Building innovative digital experiences with modern technologies.
+                        Passionate about creating clean, efficient code and user-friendly interfaces.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact"
+                            class="glow-button bg-primary text-white px-8 py-3 rounded-button font-semibold text-lg shadow-lg whitespace-nowrap">
+                            <i class="ri-message-3-line ri-lg mr-2"></i> Let's Chat
+                        </a>
+                        <a href="#projects"
+                            class="bg-[#1e293b] text-white px-8 py-3 rounded-button font-semibold text-lg border border-gray-700 hover:border-primary transition-all whitespace-nowrap">
+                            <i class="ri-code-box-line ri-lg mr-2"></i> View Projects
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Section -->
+        <section id="about" class="py-20 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">About
+                        Me</span>
+                </h2>
+                <div class="max-w-3xl mx-auto space-y-6">
+                    <div class="chat-bubble received opacity-0">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center mr-2">
+                                <i class="ri-robot-line"></i>
+                            </div>
+                            <span class="text-sm text-gray-400">AI Assistant</span>
+                        </div>
+                        <p>Tell me about yourself, Amarjeet!</p>
+                    </div>
+                    <div class="chat-bubble sent opacity-0">
+                        <div class="flex items-center justify-end mb-2">
+                            <span class="text-sm text-gray-400 mr-2">Amarjeet</span>
+                            <div class="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
+                                <i class="ri-user-line"></i>
+                            </div>
+                        </div>
+                        <p>Hey there! I'm a Full Stack Developer with 5+ years of experience building web and mobile
+                            applications. I specialize in JavaScript/TypeScript ecosystems, with expertise in React,
+                            Node.js, and Flutter.</p>
+                    </div>
+                    <div class="typing-indicator opacity-0 ml-4">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="chat-bubble received opacity-0 w-full md:w-1/3">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center mr-2">
+                                <i class="ri-robot-line"></i>
+                            </div>
+                            <span class="text-sm text-gray-400">AI Assistant</span>
+                        </div>
+                        <p>What kind of projects do you work on?</p>
+                    </div>
+                    <div class="chat-bubble sent opacity-0">
+                        <div class="flex items-center justify-end mb-2">
+                            <span class="text-sm text-gray-400 mr-2">Amarjeet</span>
+                            <div class="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
+                                <i class="ri-user-line"></i>
+                            </div>
+                        </div>
+                        <p>I've worked on a diverse range of projects including e-commerce platforms, fintech
+                            applications, content management systems, and mobile apps. I'm particularly passionate about
+                            creating intuitive user experiences and optimizing application performance.</p>
+                    </div>
+                    <div class="typing-indicator opacity-0 ml-4">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="chat-bubble received opacity-0 w-full md:w-1/3">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center mr-2">
+                                <i class="ri-robot-line"></i>
+                            </div>
+                            <span class="text-sm text-gray-400">AI Assistant</span>
+                        </div>
+                        <p>What sets you apart from other developers?</p>
+                    </div>
+                    <div class="chat-bubble sent opacity-0">
+                        <div class="flex items-center justify-end mb-2">
+                            <span class="text-sm text-gray-400 mr-2">Goutam</span>
+                            <div class="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
+                                <i class="ri-user-line"></i>
+                            </div>
+                        </div>
+                        <p>I bring a unique blend of technical expertise and creative problem-solving to every project.
+                            As a tech influencer, I regularly share knowledge through tutorials and open-source
+                            contributions. I believe in writing clean, maintainable code and staying ahead of industry
+                            trends. My approach combines technical excellence with strong communication skills to
+                            deliver solutions that exceed expectations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 px-6 bg-[#0d1424]">
+            <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Technical
+                        Skills</span>
+                </h2>
+                <div class="max-w-4xl mx-auto">
+                    <div class="mb-12">
+                        <h3 class="text-xl font-semibold mb-6 text-center text-gray-300">Frontend Development</h3>
+                        <div class="flex overflow-x-auto pb-4 custom-scrollbar">
+                            <div class="flex space-x-8 mx-auto">
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#E34F26] mb-2">
+                                        <i class="ri-html5-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">HTML5</span>
+                                </div>
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#1572B6] mb-2">
+                                        <i class="ri-css3-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">CSS3</span>
+                                </div>
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#F7DF1E] mb-2">
+                                        <i class="ri-javascript-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">JavaScript</span>
+                                </div>
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#61DAFB] mb-2">
+                                        <i class="ri-reactjs-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">React</span>
+                                </div>
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#3178C6] mb-2">
+                                        <i class="ri-typescript-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">TypeScript</span>
+                                </div>
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#38B2AC] mb-2">
+                                        <i class="ri-tailwind-css-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">Tailwind</span>
+                                </div>
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#764ABC] mb-2">
+                                        <i class="ri-redux-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">Redux</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-12">
+                        <h3 class="text-xl font-semibold mb-6 text-center text-gray-300">Backend Development</h3>
+                        <div class="flex overflow-x-auto pb-4 custom-scrollbar">
+                            <div class="flex space-x-8 mx-auto">
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#339933] mb-2">
+                                        <i class="ri-nodejs-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">Node.js</span>
+                                </div>
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#E10098] mb-2">
+                                        <i class="ri-graphql-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">GraphQL</span>
+                                </div>
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#47A248] mb-2">
+                                        <i class="ri-database-2-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">MongoDB</span>
+                                </div>
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#4479A1] mb-2">
+                                        <i class="ri-database-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">MySQL</span>
+                                </div>
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#FF6C37] mb-2">
+                                        <i class="ri-server-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">Express</span>
+                                </div>
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#3776AB] mb-2">
+                                        <i class="ri-python-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">Python</span>
+                                </div>
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#FF2D20] mb-2">
+                                        <i class="ri-fire-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">Firebase</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-6 text-center text-gray-300">Mobile & Other</h3>
+                        <div class="flex overflow-x-auto pb-4 custom-scrollbar">
+                            <div class="flex space-x-8 mx-auto">
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#02569B] mb-2">
+                                        <i class="ri-flutter-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">Flutter</span>
+                                </div>
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#61DAFB] mb-2">
+                                        <i class="ri-reactjs-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">React Native</span>
+                                </div>
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#F05032] mb-2">
+                                        <i class="ri-git-branch-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">Git</span>
+                                </div>
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#2496ED] mb-2">
+                                        <i class="ri-docker-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">Docker</span>
+                                </div>
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#FF9900] mb-2">
+                                        <i class="ri-cloud-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">AWS</span>
+                                </div>
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#4285F4] mb-2">
+                                        <i class="ri-terminal-box-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">CI/CD</span>
+                                </div>
+                                <div class="tech-icon flex flex-col items-center">
+                                    <div
+                                        class="w-16 h-16 rounded-lg bg-[#1e293b] flex items-center justify-center text-[#7B42BC] mb-2">
+                                        <i class="ri-braces-fill ri-2x"></i>
+                                    </div>
+                                    <span class="text-sm">REST APIs</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Featured
+                        Projects</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="project-card bg-[#1e293b] rounded-lg overflow-hidden shadow-lg" data-id="1">
+                        <div class="h-48 bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                            <i class="ri-shopping-cart-fill ri-3x text-white"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">E-Commerce Platform</h3>
+                            <p class="text-gray-400 mb-4">A full-featured online shopping platform with real-time
+                                inventory management.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">React</span>
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">Node.js</span>
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">MongoDB</span>
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">Redux</span>
+                            </div>
+                            <button
+                                class="text-primary hover:text-white hover:bg-primary transition-all px-4 py-2 rounded-button text-sm font-medium border border-primary whitespace-nowrap"
+                                onclick="document.getElementById('projectModal').classList.remove('hidden'); document.body.style.overflow = 'hidden';">View
+                                Details</button>
+                        </div>
+                    </div>
+                    <div class="project-card bg-[#1e293b] rounded-lg overflow-hidden shadow-lg" data-id="2">
+                        <div class="h-48 bg-gradient-to-r from-secondary to-primary flex items-center justify-center">
+                            <i class="ri-bank-card-fill ri-3x text-white"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Fintech Dashboard</h3>
+                            <p class="text-gray-400 mb-4">A comprehensive financial analytics dashboard with real-time
+                                data visualization.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">TypeScript</span>
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">Next.js</span>
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">GraphQL</span>
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">D3.js</span>
+                            </div>
+                            <button
+                                class="text-primary hover:text-white hover:bg-primary transition-all px-4 py-2 rounded-button text-sm font-medium border border-primary whitespace-nowrap"
+                                onclick="document.getElementById('projectModal').classList.remove('hidden'); document.body.style.overflow = 'hidden';">View
+                                Details</button>
+                        </div>
+                    </div>
+                    <div class="project-card bg-[#1e293b] rounded-lg overflow-hidden shadow-lg" data-id="3">
+                        <div class="h-48 bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                            <i class="ri-chat-4-fill ri-3x text-white"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">AI Chat Application</h3>
+                            <p class="text-gray-400 mb-4">A real-time messaging platform with AI-powered chatbots and
+                                language translation.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">React</span>
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">Socket.io</span>
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">Express</span>
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">NLP</span>
+                            </div>
+                            <button
+                                class="text-primary hover:text-white hover:bg-primary transition-all px-4 py-2 rounded-button text-sm font-medium border border-primary whitespace-nowrap"
+                                onclick="document.getElementById('projectModal').classList.remove('hidden'); document.body.style.overflow = 'hidden';">View
+                                Details</button>
+                        </div>
+                    </div>
+                    <div class="project-card bg-[#1e293b] rounded-lg overflow-hidden shadow-lg" data-id="4">
+                        <div class="h-48 bg-gradient-to-r from-secondary to-primary flex items-center justify-center">
+                            <i class="ri-smartphone-fill ri-3x text-white"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Fitness Tracking App</h3>
+                            <p class="text-gray-400 mb-4">A mobile application for tracking workouts, nutrition, and
+                                health metrics.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">Flutter</span>
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">Firebase</span>
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">Bloc</span>
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">Health API</span>
+                            </div>
+                            <button
+                                class="text-primary hover:text-white hover:bg-primary transition-all px-4 py-2 rounded-button text-sm font-medium border border-primary whitespace-nowrap"
+                                onclick="document.getElementById('projectModal').classList.remove('hidden'); document.body.style.overflow = 'hidden';">View
+                                Details</button>
+                        </div>
+                    </div>
+                    <div class="project-card bg-[#1e293b] rounded-lg overflow-hidden shadow-lg" data-id="5">
+                        <div class="h-48 bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                            <i class="ri-article-fill ri-3x text-white"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Content Management System</h3>
+                            <p class="text-gray-400 mb-4">A custom CMS with advanced editing capabilities and user
+                                management.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">Vue.js</span>
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">Node.js</span>
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">PostgreSQL</span>
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">AWS S3</span>
+                            </div>
+                            <button
+                                class="text-primary hover:text-white hover:bg-primary transition-all px-4 py-2 rounded-button text-sm font-medium border border-primary whitespace-nowrap"
+                                onclick="document.getElementById('projectModal').classList.remove('hidden'); document.body.style.overflow = 'hidden';">View
+                                Details</button>
+                        </div>
+                    </div>
+                    <div class="project-card bg-[#1e293b] rounded-lg overflow-hidden shadow-lg" data-id="6">
+                        <div class="h-48 bg-gradient-to-r from-secondary to-primary flex items-center justify-center">
+                            <i class="ri-video-fill ri-3x text-white"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Video Streaming Platform</h3>
+                            <p class="text-gray-400 mb-4">A scalable video streaming service with content recommendation
+                                engine.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">React</span>
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">Python</span>
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">FFmpeg</span>
+                                <span class="text-xs bg-[#0f172a] text-primary px-3 py-1 rounded-full">AWS</span>
+                            </div>
+                            <button
+                                class="text-primary hover:text-white hover:bg-primary transition-all px-4 py-2 rounded-button text-sm font-medium border border-primary whitespace-nowrap"
+                                onclick="document.getElementById('projectModal').classList.remove('hidden'); document.body.style.overflow = 'hidden';">View
+                                Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Project Modal -->
+        <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-80 hidden"
+            id="projectModal">
+            <div class="bg-[#1e293b] rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold" id="modalTitle">Project Title</h3>
+                        <button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white"
+                            id="closeModal">
+                            <i class="ri-close-line ri-lg"></i>
+                        </button>
+                    </div>
+                    <div class="mb-6">
+                        <div class="h-64 bg-cover bg-center rounded-lg mb-6" id="modalImage"
+                            style="background-image: url('https://readdy.ai/api/search-image?query=modern%20sleek%20e-commerce%20website%20interface%20with%20clean%20design%2C%20minimalist%20product%20display%2C%20shopping%20cart%2C%20and%20payment%20gateway%20integration.%20Professional%20UI%20design%20with%20subtle%20shadows%20and%20gradients&width=1280&height=720&seq=1&orientation=landscape');">
+                            <div
+                                class="w-full h-full bg-gradient-to-r from-primary/10 to-secondary/10 backdrop-blur-sm flex items-center justify-center">
+                                <i class="ri-code-box-fill ri-3x text-white"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-6" id="modalDescription">Project description loading...</p>
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold mb-3">Technologies Used</h4>
+                            <div class="flex flex-wrap gap-2" id="modalTech"></div>
+                        </div>
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold mb-3">Key Features</h4>
+                            <ul class="list-disc pl-5 space-y-2 text-gray-300" id="modalFeatures"></ul>
+                        </div>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#"
+                                class="bg-primary text-white px-6 py-2 rounded-button font-medium whitespace-nowrap"
+                                id="modalLiveLink">
+                                <i class="ri-external-link-line mr-2"></i> Live Demo
+                            </a>
+                            <a href="#"
+                                class="bg-[#0f172a] text-white px-6 py-2 rounded-button font-medium border border-gray-700 whitespace-nowrap"
+                                id="modalGithubLink">
+                                <i class="ri-github-fill mr-2"></i> View Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 px-6 bg-[#0d1424]">
+            <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Client
+                        Feedback</span>
+                </h2>
+                <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-6">
+                    <div class="chat-bubble received opacity-0 w-full md:w-1/3">
+                        <div class="flex items-start mb-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#8B5CF6] flex items-center justify-center mr-3">
+                                <span class="text-white font-semibold">AR</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Alex Rodriguez</h4>
+                                <p class="text-sm text-gray-400">CTO, TechVision Inc.</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">"Amarjeet delivered an exceptional e-commerce platform that exceeded our
+                            expectations. His technical expertise and attention to detail resulted in a seamless user
+                            experience and robust backend functionality. He was responsive, professional, and provided
+                            valuable insights throughout the development process."</p>
+                    </div>
+                    <div class="chat-bubble received opacity-0 w-full md:w-1/3">
+                        <div class="flex items-start mb-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-gradient-to-r from-[#EC4899] to-[#8B5CF6] flex items-center justify-center mr-3">
+                                <span class="text-white font-semibold">SJ</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Sarah Johnson</h4>
+                                <p class="text-sm text-gray-400">Product Manager, FinanceFlow</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">"Working with Amarjeet on our fintech dashboard was a fantastic
+                            experience. He quickly understood our complex requirements and delivered a solution that
+                            perfectly balanced functionality and user experience. His expertise in data visualization
+                            and real-time systems was invaluable, and the final product has received overwhelmingly
+                            positive feedback from our users."</p>
+                    </div>
+                    <div class="chat-bubble received opacity-0 w-full md:w-1/3">
+                        <div class="flex items-start mb-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-gradient-to-r from-[#10B981] to-[#3B82F6] flex items-center justify-center mr-3">
+                                <span class="text-white font-semibold">MK</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Michael Kim</h4>
+                                <p class="text-sm text-gray-400">Founder, FitTech Solutions</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300">"Amarjeet developed our fitness tracking app from concept to launch in
+                            record time. His expertise in Flutter and mobile development resulted in a beautiful,
+                            high-performance application that our users love. He was proactive in suggesting features
+                            and optimizations we hadn't considered, which significantly enhanced the final product. I
+                            highly recommend Amarjeet for any mobile development project."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CTA Section -->
+        <section class="py-20 px-6">
+            <div class="container mx-auto">
+                <div class="max-w-4xl mx-auto bg-[#1e293b] rounded-lg p-8 md:p-12 shadow-lg relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10"></div>
+                    <div class="relative z-10">
+                        <div class="chat-bubble received mb-8">
+                            <div class="flex items-center mb-2">
+                                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center mr-2">
+                                    <i class="ri-robot-line"></i>
+                                </div>
+                                <span class="text-sm text-gray-400">AI Assistant</span>
+                            </div>
+                            <p class="text-lg">Looking for a skilled developer for your next project?</p>
+                        </div>
+                        <div class="chat-bubble sent">
+                            <div class="flex items-center justify-end mb-2">
+                                <span class="text-sm text-gray-400 mr-2">Amarjeet</span>
+                                <div class="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
+                                    <i class="ri-user-line"></i>
+                                </div>
+                            </div>
+                            <p class="text-lg">I'm currently available for freelance work and new opportunities! Let's
+                                create something amazing together.</p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4 mt-8 justify-center">
+                            <a href="#contact"
+                                class="glow-button bg-primary text-white px-8 py-3 rounded-button font-semibold text-lg shadow-lg whitespace-nowrap">
+                                <i class="ri-message-3-line ri-lg mr-2"></i> Get in Touch
+                            </a>
+                            <a href="#"
+                                class="bg-[#0f172a] text-white px-8 py-3 rounded-button font-semibold text-lg border border-gray-700 hover:border-primary transition-all whitespace-nowrap">
+                                <i class="ri-file-download-line ri-lg mr-2"></i> Download Resume
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-6 bg-[#0d1424]">
+            <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Let's
+                        Connect</span>
+                </h2>
+                <div class="max-w-4xl mx-auto bg-[#1e293b] rounded-lg p-8 shadow-lg">
+                    <div class="chat-bubble received mb-8">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center mr-2">
+                                <i class="ri-robot-line"></i>
+                            </div>
+                            <span class="text-sm text-gray-400">AI Assistant</span>
+                        </div>
+                        <p>How can Amarjeet help with your project? Send a message to start the conversation!</p>
+                    </div>
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-400 mb-2">Your Name</label>
+                                <input type="text" id="name"
+                                    class="input-field w-full px-4 py-3 rounded-lg text-white border-none focus:outline-none focus:ring-2 focus:ring-primary"
+                                    placeholder="John Doe" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-400 mb-2">Email
+                                    Address</label>
+                                <input type="email" id="email"
+                                    class="input-field w-full px-4 py-3 rounded-lg text-white border-none focus:outline-none focus:ring-2 focus:ring-primary"
+                                    placeholder="john@example.com" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-400 mb-2">Subject</label>
+                            <input type="text" id="subject"
+                                class="input-field w-full px-4 py-3 rounded-lg text-white border-none focus:outline-none focus:ring-2 focus:ring-primary"
+                                placeholder="Project Inquiry" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-400 mb-2">Message</label>
+                            <textarea id="message" rows="5"
+                                class="input-field w-full px-4 py-3 rounded-lg text-white border-none focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                                placeholder="Tell me about your project..." required></textarea>
+                        </div>
+                        <div class="flex justify-center">
+                            <button type="submit"
+                                class="glow-button bg-primary text-white px-8 py-3 rounded-button font-semibold text-lg shadow-lg whitespace-nowrap">
+                                <i class="ri-send-plane-fill ri-lg mr-2"></i> Send Message
+                            </button>
+                        </div>
+                    </form>
+                    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="flex flex-col items-center text-center">
+                            <div
+                                class="w-12 h-12 rounded-full bg-[#0f172a] flex items-center justify-center text-primary mb-4">
+                                <i class="ri-mail-fill ri-lg"></i>
+                            </div>
+                            <h3 class="font-semibold mb-2">Email</h3>
+                            <a href="mailto:amarjeetkumartiwari219@gmail.com"
+                                class="text-gray-400 hover:text-primary transition-all">amarjeetkumartiwari219@gmail.com</a>
+                        </div>
+                        <div class="flex flex-col items-center text-center">
+                            <div
+                                class="w-12 h-12 rounded-full bg-[#0f172a] flex items-center justify-center text-primary mb-4">
+                                <i class="ri-map-pin-fill ri-lg"></i>
+                            </div>
+                            <h3 class="font-semibold mb-2">Location</h3>
+                            <p class="text-gray-400">San Francisco, California</p>
+                        </div>
+                        <div class="flex flex-col items-center text-center">
+                            <div
+                                class="w-12 h-12 rounded-full bg-[#0f172a] flex items-center justify-center text-primary mb-4">
+                                <i class="ri-time-fill ri-lg"></i>
+                            </div>
+                            <h3 class="font-semibold mb-2">Availability</h3>
+                            <p class="text-gray-400">Mon-Fri, 9AM-6PM PST</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-[#0f172a] py-12 px-6">
+        <div class="container mx-auto">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                    <a href="#" class="text-2xl font-['Pacifico'] text-white mb-6 md:mb-0">websitedeveloper</a>
+                    <div class="flex space-x-6">
+                        <a href="#"
+                            class="social-icon w-10 h-10 flex items-center justify-center rounded-full bg-[#1e293b] text-gray-400 hover:text-primary">
+                            <i class="ri-github-fill ri-lg"></i>
+                        </a>
+                        <a href="#"
+                            class="social-icon w-10 h-10 flex items-center justify-center rounded-full bg-[#1e293b] text-gray-400 hover:text-primary">
+                            <i class="ri-linkedin-fill ri-lg"></i>
+                        </a>
+                        <a href="#"
+                            class="social-icon w-10 h-10 flex items-center justify-center rounded-full bg-[#1e293b] text-gray-400 hover:text-primary">
+                            <i class="ri-twitter-x-fill ri-lg"></i>
+                        </a>
+                        <a href="#"
+                            class="social-icon w-10 h-10 flex items-center justify-center rounded-full bg-[#1e293b] text-gray-400 hover:text-primary">
+                            <i class="ri-instagram-fill ri-lg"></i>
+                        </a>
+                        <a href="#"
+                            class="social-icon w-10 h-10 flex items-center justify-center rounded-full bg-[#1e293b] text-gray-400 hover:text-primary">
+                            <i class="ri-youtube-fill ri-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="border-t border-gray-800 pt-8">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <p class="text-gray-400 mb-4 md:mb-0">© 2025 Amarjeet. All rights reserved.</p>
+                        <p class="text-gray-400">Made with <span class="text-primary">💻</span> by websitedeveloper</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script id="navigationScript">
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenuButton.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+            });
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    mobileMenu.classList.add('hidden');
+                    navLinks.forEach(navLink => {
+                        navLink.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+            themeToggle.addEventListener('click', function () {
+                this.classList.toggle('light');
+                if (this.classList.contains('light')) {
+                    body.classList.add('light-mode');
+                    document.querySelectorAll('.bg-[#0f172a]').forEach(el => {
+                        el.classList.remove('bg-[#0f172a]');
+                        el.classList.add('bg-gray-100');
+                    });
+                    document.querySelectorAll('.bg-[#1e293b]').forEach(el => {
+                        el.classList.remove('bg-[#1e293b]');
+                        el.classList.add('bg-white');
+                    });
+                    document.querySelectorAll('.text-gray-300, .text-gray-400').forEach(el => {
+                        el.classList.remove('text-gray-300', 'text-gray-400');
+                        el.classList.add('text-gray-600');
+                    });
+                    document.querySelectorAll('.text-white').forEach(el => {
+                        el.classList.remove('text-white');
+                        el.classList.add('text-gray-900');
+                    });
+                    document.querySelectorAll('.gradient-bg').forEach(el => {
+                        el.style.background = 'linear-gradient(45deg, #f8fafc, #f1f5f9)';
+                    });
+                } else {
+                    body.classList.remove('light-mode');
+                    document.querySelectorAll('.bg-gray-100').forEach(el => {
+                        el.classList.remove('bg-gray-100');
+                        el.classList.add('bg-[#0f172a]');
+                    });
+                    document.querySelectorAll('.bg-white').forEach(el => {
+                        el.classList.remove('bg-white');
+                        el.classList.add('bg-[#1e293b]');
+                    });
+                    document.querySelectorAll('.text-gray-600').forEach(el => {
+                        el.classList.remove('text-gray-600');
+                        el.classList.add('text-gray-400');
+                    });
+                    document.querySelectorAll('.text-gray-900').forEach(el => {
+                        el.classList.remove('text-gray-900');
+                        el.classList.add('text-white');
+                    });
+                    document.querySelectorAll('.gradient-bg').forEach(el => {
+                        el.style.background = 'linear-gradient(45deg, #1e293b, #0f172a)';
+                    });
+                }
+            });
+        });
+    </script>
+    <script id="typingEffectScript">
+        document.addEventListener('DOMContentLoaded', function () {
+            const typingText = document.getElementById('typingText');
+            const text = "👋 Hello! I'm Amarjeet — Full Stack Developer & Tech Influencer";
+            let i = 0;
+            function typeWriter() {
+                if (i < text.length) {
+                    typingText.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            }
+            typeWriter();
+        });
+    </script>
+    <script id="chatAnimationScript">
+        document.addEventListener('DOMContentLoaded', function () {
+            const chatBubbles = document.querySelectorAll('.chat-bubble');
+            const typingIndicators = document.querySelectorAll('.typing-indicator');
+            function animateChatSequence() {
+                let delay = 500;
+                chatBubbles.forEach((bubble, index) => {
+                    setTimeout(() => {
+                        bubble.classList.remove('opacity-0');
+                        if (typingIndicators[index]) {
+                            setTimeout(() => {
+                                typingIndicators[index].classList.remove('opacity-0');
+                                setTimeout(() => {
+                                    typingIndicators[index].classList.add('opacity-0');
+                                }, 1500);
+                            }, 1000);
+                        }
+                    }, delay);
+                    delay += 2000;
+                });
+            }
+            // Use Intersection Observer to trigger animation when section is in view
+            const aboutSection = document.getElementById('about');
+            const testimonialsSection = document.getElementById('testimonials');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateChatSequence();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            if (aboutSection) observer.observe(aboutSection);
+            if (testimonialsSection) observer.observe(testimonialsSection);
+        });
+    </script>
+    <script id="projectModalScript">
+        document.addEventListener('DOMContentLoaded', function () {
+            const projectCards = document.querySelectorAll('.project-card');
+            const projectModal = document.getElementById('projectModal');
+            const closeModal = document.getElementById('closeModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalImage = document.getElementById('modalImage');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalTech = document.getElementById('modalTech');
+            const modalFeatures = document.getElementById('modalFeatures');
+            const modalLiveLink = document.getElementById('modalLiveLink');
+            const modalGithubLink = document.getElementById('modalGithubLink');
+            const projectData = {
+                "1": {
+                    title: "E-Commerce Platform",
+                    description: "A comprehensive e-commerce solution built with React and Node.js. The platform includes user authentication, product catalog, shopping cart, payment processing, and order management functionality. The admin dashboard provides real-time inventory management and sales analytics.",
+                    tech: ["React", "Node.js", "MongoDB", "Redux", "Stripe API", "AWS S3"],
+                    features: [
+                        "User authentication and profile management",
+                        "Product search and filtering with advanced options",
+                        "Real-time inventory tracking and notifications",
+                        "Secure payment processing with multiple options",
+                        "Order tracking and delivery status updates",
+                        "Admin dashboard with sales analytics and reporting"
+                    ],
+                    liveLink: "#",
+                    githubLink: "#",
+                    icon: "ri-shopping-cart-fill"
+                },
+                "2": {
+                    title: "Fintech Dashboard",
+                    description: "A sophisticated financial analytics dashboard built with Next.js and GraphQL. The application provides real-time data visualization, transaction monitoring, and financial forecasting tools for both personal and business users.",
+                    tech: ["TypeScript", "Next.js", "GraphQL", "D3.js", "PostgreSQL", "Auth0"],
+                    features: [
+                        "Real-time financial data visualization",
+                        "Transaction categorization and analysis",
+                        "Budget planning and expense tracking",
+                        "Investment portfolio management",
+                        "Financial forecasting with machine learning",
+                        "Secure multi-factor authentication"
+                    ],
+                    liveLink: "#",
+                    githubLink: "#",
+                    icon: "ri-bank-card-fill"
+                },
+                "3": {
+                    title: "AI Chat Application",
+                    description: "A real-time messaging platform with AI-powered chatbots and language translation. The application supports group chats, file sharing, and integrates with natural language processing for smart responses and content moderation.",
+                    tech: ["React", "Socket.io", "Express", "NLP", "Redis", "MongoDB"],
+                    features: [
+                        "Real-time messaging with typing indicators",
+                        "AI-powered chatbots for customer service",
+                        "Automatic language translation for 20+ languages",
+                        "File and media sharing with preview",
+                        "End-to-end encryption for secure communication",
+                        "Voice and video call integration"
+                    ],
+                    liveLink: "#",
+                    githubLink: "#",
+                    icon: "ri-chat-4-fill"
+                },
+                "4": {
+                    title: "Fitness Tracking App",
+                    description: "A mobile application for tracking workouts, nutrition, and health metrics. The app provides personalized workout plans, nutrition tracking, and integrates with wearable devices for comprehensive health monitoring.",
+                    tech: ["Flutter", "Firebase", "Bloc", "Health API", "Node.js", "MongoDB"],
+                    features: [
+                        "Personalized workout plans and progress tracking",
+                        "Nutrition logging and meal planning",
+                        "Integration with fitness wearables and health apps",
+                        "Community challenges and social sharing",
+                        "Progress visualization with detailed analytics",
+                        "Offline functionality and data synchronization"
+                    ],
+                    liveLink: "#",
+                    githubLink: "#",
+                    icon: "ri-smartphone-fill"
+                },
+                "5": {
+                    title: "Content Management System",
+                    description: "A custom CMS with advanced editing capabilities and user management. The system provides flexible content modeling, workflow management, and robust access controls for enterprise content management needs.",
+                    tech: ["Vue.js", "Node.js", "PostgreSQL", "AWS S3", "Redis", "Docker"],
+                    features: [
+                        "Flexible content modeling and custom fields",
+                        "Advanced rich text editor with media management",
+                        "Workflow and approval processes",
+                        "Granular user permissions and access control",
+                        "Content versioning and rollback capabilities",
+                        "Multi-site and multi-language support"
+                    ],
+                    liveLink: "#",
+                    githubLink: "#",
+                    icon: "ri-article-fill"
+                },
+                "6": {
+                    title: "Video Streaming Platform",
+                    description: "A scalable video streaming service with content recommendation engine. The platform supports live streaming, video on demand, and includes an AI-powered recommendation system for personalized content discovery.",
+                    tech: ["React", "Python", "FFmpeg", "AWS", "Redis", "TensorFlow"],
+                    features: [
+                        "Adaptive bitrate streaming for optimal playback",
+                        "Live streaming with real-time chat",
+                        "AI-powered content recommendations",
+                        "Content categorization and smart search",
+                        "Analytics dashboard for content creators",
+                        "Multi-device synchronization and playback"
+                    ],
+                    liveLink: "#",
+                    githubLink: "#",
+                    icon: "ri-video-fill"
+                }
+            };
+            projectCards.forEach(card => {
+                card.addEventListener('click', function () {
+                    const projectId = this.getAttribute('data-id');
+                    const project = projectData[projectId];
+                    modalTitle.textContent = project.title;
+                    modalDescription.textContent = project.description;
+                    modalImage.innerHTML = `<i class="${project.icon} ri-3x text-white"></i>`;
+                    modalTech.innerHTML = '';
+                    project.tech.forEach(tech => {
+                        const techSpan = document.createElement('span');
+                        techSpan.className = 'text-sm bg-[#0f172a] text-primary px-3 py-1 rounded-full';
+                        techSpan.textContent = tech;
+                        modalTech.appendChild(techSpan);
+                    });
+                    modalFeatures.innerHTML = '';
+                    project.features.forEach(feature => {
+                        const li = document.createElement('li');
+                        li.textContent = feature;
+                        modalFeatures.appendChild(li);
+                    });
+                    modalLiveLink.href = project.liveLink;
+                    modalGithubLink.href = project.githubLink;
+                    projectModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            closeModal.addEventListener('click', function () {
+                projectModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+            // Close modal when clicking outside
+            projectModal.addEventListener('click', function (e) {
+                if (e.target === projectModal) {
+                    projectModal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+    </script>
+    <script id="contactFormScript">
+        document.addEventListener('DOMContentLoaded', function () {
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                // Form validation would go here
+                // Simulate form submission
+                const submitButton = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitButton.innerHTML;
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<i class="ri-loader-4-line ri-lg animate-spin mr-2"></i> Sending...';
+                setTimeout(() => {
+                    // Reset form
+                    contactForm.reset();
+                    // Show success message
+                    const formContainer = contactForm.parentElement;
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'chat-bubble received mt-6';
+                    successMessage.innerHTML = `
+<div class="flex items-center mb-2">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center mr-2">
+<i class="ri-robot-line"></i>
+</div>
+<span class="text-sm text-gray-400">AI Assistant</span>
+</div>
+<p>Thanks for your message, ${name}! Goutam will get back to you soon.</p>
+`;
+                    formContainer.appendChild(successMessage);
+                    // Reset button
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalText;
+                    // Scroll to success message
+                    successMessage.scrollIntoView({ behavior: 'smooth' });
+                    // Remove success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.remove();
+                    }, 5000);
+                }, 1500);
+            });
+        });
+    </script>
+    <script id="scrollEffectsScript">
+        document.addEventListener('DOMContentLoaded', function () {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            function updateActiveNavLink() {
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.scrollY >= (sectionTop - 200)) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSection}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            window.addEventListener('scroll', updateActiveNavLink);
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
