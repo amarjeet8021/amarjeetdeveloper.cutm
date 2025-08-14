@@ -1,1 +1,1 @@
-# amarjeetdeveloper.cutm
+# amarjeetdeveloper.com
